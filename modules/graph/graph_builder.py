@@ -17,13 +17,13 @@ class GraphBuilder:
         # Add nodes to the graph
         self.graph_builder.add_node("fetch_news", ai_news_node.fetch_news)
         self.graph_builder.add_node("generate_summary", ai_news_node.generate_summary)
-        self.graph_builder.add_node("save_news  ", ai_news_node.save_news)
+        self.graph_builder.add_node("save_result", ai_news_node.save_result)
 
         # Add edges to the graph
         self.graph_builder.add_edge(START, "fetch_news")
         self.graph_builder.add_edge("fetch_news", "generate_summary")
-        self.graph_builder.add_edge("generate_summary", "save_news")
-        self.graph_builder.add_edge("save_news", END)
+        self.graph_builder.add_edge("generate_summary", "save_result")
+        self.graph_builder.add_edge("save_result", END)
 
     def setup_graph(self, usecase: str):
         """
