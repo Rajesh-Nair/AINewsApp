@@ -1,4 +1,6 @@
 from langgraph.graph import StateGraph, START, END
+from modules.state.state import State
+from modules.nodes import AINewsNode
 
 
 class GraphBuilder:
