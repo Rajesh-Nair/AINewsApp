@@ -16,13 +16,16 @@ def load_app():
         st.error("Error: Failed to load user input from the UI.")
         return
     
-        # Text input for user message
+    # Text input for user message
     if st.session_state.IsFetchButtonClicked:
         user_message = st.session_state.timeframe 
     else :
         user_message = st.chat_input("Enter your message:")
 
     if user_message:
+        if not st.session_state.IsFetchButtonClicked:
+            st.error(f"Chatbot feature is Not Active Now")
+            return
         try:
             ## Configure The LLM's
             obj_llm_config=GroqLLM(user_controls_input=user_input)
@@ -38,9 +41,8 @@ def load_app():
             if not usecase:
                 st.error("Error: No use case selected.")
                 return
-            
-            ## Graph Builder
 
+            ## Graph Builder
             graph_builder=GraphBuilder(model)
             try:
                  graph=graph_builder.setup_graph(usecase)

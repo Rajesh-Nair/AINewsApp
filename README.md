@@ -7,4 +7,7 @@ uv init AINewsApp
 cd AINewsApp
 uv venv
 .venv\Scripts\activate
+
+cd AgenticAI/AINewsApp
+streamlit run app.py
 ```

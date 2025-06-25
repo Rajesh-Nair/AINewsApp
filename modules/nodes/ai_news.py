@@ -21,6 +21,7 @@ class AINewsNode:
             dict: AI News data with key 'news_data'
         """
         try :
+            print(state)
             frequency = state['messages'][0].content.lower()
             self.state['frequency'] = frequency
             time_range_map = {'daily': 'd', 'weekly': 'w', 'monthly': 'm', 'year': 'y'}
@@ -70,8 +71,9 @@ class AINewsNode:
             f"Content: {item.get('content', '')}\nURL: {item.get('url', '')}\nDate: {item.get('published_date', '')}"
             for item in news_items
         ])
-
+        print(prompt_template.format(articles=articles_str))
         response = self.llm.invoke(prompt_template.format(articles=articles_str))
+        print(response)
         state['summary'] = response.content
         self.state['summary'] = state['summary']
         return self.state
